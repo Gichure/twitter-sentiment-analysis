@@ -1,5 +1,9 @@
 import re 
 import tweepy 
+import matplotlib.pyplot as plt; plt.rcdefaults()
+import numpy as np
+import matplotlib.pyplot as plt
+
 from tweepy import OAuthHandler 
 from textblob import TextBlob 
 
@@ -16,7 +20,6 @@ class TwitterClient(object):
         consumer_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
         access_token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
         access_token_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-
         # attempt authentication 
         try: 
             # create OAuthHandler object 
@@ -103,12 +106,21 @@ def main():
     print("Neutral Tweets: {}".format(len(tweets) - len(negativetweets) - len(positivetweets)))
     # percentage of positive tweets 
     print("Positive tweets percentage: {} %".format(100*len(positivetweets)/len(tweets))) 
-     
     # percentage of negative tweets 
     print("Negative tweets percentage: {} %".format(100*len(negativetweets)/len(tweets))) 
     # percentage of neutral tweets 
     print("Neutral tweets percentage: {} % ".format(100*(len(tweets) -(len( negativetweets )+len( positivetweets)))/len(tweets))) 
 
+    #Graph
+    objects = ('Positive', 'Neutral', 'Negative')
+    y_pos = np.arange(len(objects))
+    performance = [len(positivetweets),len(tweets) - len(negativetweets) - len(positivetweets),len(negativetweets)]
+    
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel('Perccentage')
+    plt.title('%s Sentiment Analysis'%v_query)    
+    plt.show()
     # printing first 5 positive tweets 
     print("\n\nSelected Positive tweets:") 
     print("\n-----------------------------") 
