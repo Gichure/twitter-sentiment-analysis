@@ -11,11 +11,12 @@ class TwitterClient(object):
         ''' 
         Class constructor or initialization method. 
         '''
-        # Replace the following keys and tokens
-        consumer_key = 'XXXXXXXXXXXXXXXXXXXXXXXX'
-        consumer_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-        access_token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-        access_token_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXX'
+        # Replace the keys and tokens from the Twitter Dev Console 
+        consumer_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        consumer_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        access_token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        access_token_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+
         # attempt authentication 
         try: 
             # create OAuthHandler object 
@@ -89,7 +90,9 @@ def main():
     # creating object of TwitterClient Class 
     api = TwitterClient() 
     # calling function to get tweets 
-    tweets = api.get_tweets(query = 'Uhuru Kenyatta', count = 200) 
+    v_query = raw_input("Please enter a keyword to evaluate:\n")
+    print("Please wait while we evaluate %s"%v_query )
+    tweets = api.get_tweets(query = v_query, count = 200) 
     print("Fetched Tweets: {}".format(len(tweets))) 
     # picking positive tweets from tweets 
     positivetweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive'] 
@@ -107,12 +110,14 @@ def main():
     print("Neutral tweets percentage: {} % ".format(100*(len(tweets) -(len( negativetweets )+len( positivetweets)))/len(tweets))) 
 
     # printing first 5 positive tweets 
-    print("\n\nPositive tweets:") 
+    print("\n\nSelected Positive tweets:") 
+    print("\n-----------------------------") 
     for tweet in positivetweets[:10]: 
         print(tweet['text'].encode('utf-8')) 
 
     # printing first 5 negative tweets 
-    print("\n\nNegative tweets:") 
+    print("\n\nSelected Negative tweets:") 
+    print("\n-----------------------------")
     for tweet in negativetweets[:10]: 
         print(tweet['text'].encode('utf-8')) 
 
