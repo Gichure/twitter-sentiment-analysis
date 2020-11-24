@@ -29,6 +29,10 @@ You will be prompted to enter the keyword. Provide keyword and hit enter
 ![Prompt and Analysis](docs/analysis.png)  
 ![Sentiment Analysis](docs/graph.png)
 
+### Contact
+
+Send me an [email](mailto:gichurepaul@gmail.com) to build a sentiment analysis application for your unique business brands, campaigns and needs. Visit my [website](https://gichure.github.io/)
+
 ### Author
 [Paul Gichure](https://gichure.github.io/)
 
